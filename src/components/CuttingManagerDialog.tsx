@@ -67,7 +67,7 @@ export default function CuttingManagerPage() {
     },
     {
       name: "Anita Devi",
-      available: false,
+      available: true,
       weeklyWorkload: {
         Monday: { status: "Busy", freeHours: 2 },
         Tuesday: { status: "1 Order", freeHours: 6 },

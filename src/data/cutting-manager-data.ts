@@ -1,0 +1,20 @@
+import type { CuttingOrder } from "@/table-types/cutting-manager";
+
+export const cuttingOrders: CuttingOrder[] = [
+  {
+    id: "1",
+    orderNo: "ORD-001",
+    garment: "Shirt",
+    materials: ["FAB001", "BTN001"],
+    qty: 2,
+    status: "Cutting Pending",
+  },
+  {
+    id: "2",
+    orderNo: "ORD-002",
+    garment: "Kurta",
+    materials: ["FAB003", "THR004", "ZIP002"],
+    qty: 1,
+    status: "In Progress",
+  },
+];

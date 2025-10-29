@@ -81,7 +81,7 @@ export function DataTable<TData, TValue>({
           {table.getHeaderGroups().map((headerGroup) => (
             <TableRow
               key={headerGroup.id}
-              className="bg-linear-to-r from-[#8C03E9] to-[#B13AFF] text-white"
+              className="bg-linear-to-r from-[#3F3F47] to-[#1F2937] text-white"
             >
               {headerGroup.headers.map((header, index) => (
                 <TableHead
@@ -112,16 +112,16 @@ export function DataTable<TData, TValue>({
               <TableRow
                 key={row.id}
                 data-state={row.getIsSelected() && "selected"}
-                className={`bg-white hover:bg-[#f3e1ff] transition-all duration-200 ${
+                className={`bg-[#8B71DB] hover:bg-[#e0b0ff] transition-all duration-200 ${
                   rowIndex !== table.getRowModel().rows.length - 1
-                    ? "border-b border-[#d9bdfd]"
+                    ? "border-b border-[#cca6ff]"
                     : ""
                 }`}
               >
                 {row.getVisibleCells().map((cell) => (
                   <TableCell
                     key={cell.id}
-                    className="text-[#2b0259] text-sm py-4 px-6"
+                    className="text-[#24024b] text-sm py-4 px-6"
                   >
                     {flexRender(cell.column.columnDef.cell, cell.getContext())}
                   </TableCell>
@@ -132,7 +132,7 @@ export function DataTable<TData, TValue>({
             <TableRow>
               <TableCell
                 colSpan={columns.length}
-                className="h-24 text-center text-[#7e57c2]"
+                className="h-24 text-center text-[#6118df]"
               >
                 No results found
               </TableCell>
@@ -142,7 +142,7 @@ export function DataTable<TData, TValue>({
       </Table>
 
       {enablePagination && (
-        <div className="bg-[#E4C6FF] border-t border-[#d2aefb] p-2">
+        <div className="bg-[#6E11B0] border-t border-[#efe2ff]">
           <DataTablePagination table={table} />
         </div>
       )}

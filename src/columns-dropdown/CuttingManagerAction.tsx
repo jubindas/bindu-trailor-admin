@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { MoreVertical } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
@@ -6,10 +5,10 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import CuttingManagerDialog from "@/components/CuttingManagerDialog";
+import { useNavigate } from "react-router";
 
 export default function CuttingManagerAction() {
-  const [openDialog, setOpenDialog] = useState(false);
+  const navigate = useNavigate();
 
   return (
     <>
@@ -28,17 +27,13 @@ export default function CuttingManagerAction() {
             <Button
               variant="ghost"
               className="justify-start text-gray-200 hover:bg-[#374151]"
-              onClick={() => setOpenDialog(true)}
+              onClick={() => navigate("/work-load")}
             >
               Manage
             </Button>
           </div>
         </PopoverContent>
       </Popover>
-
-      {openDialog && (
-        <CuttingManagerDialog open={openDialog} onOpenChange={setOpenDialog} />
-      )}
     </>
   );
 }

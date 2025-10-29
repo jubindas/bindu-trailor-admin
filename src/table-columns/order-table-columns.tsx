@@ -9,9 +9,12 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 
+// import type { Order } from "@/table-types/order-table";
+
 export interface Order {
   id: number;
-  orderNo: string;
+  orderId: string;
+  coustomerName: string;
   status: string;
   assignedTo: string;
   date: string;
@@ -32,14 +35,12 @@ const getStatusColor = (status: string) => {
   }
 };
 
-
 const statusOptions = [
   "Cutting Pending",
   "In Production",
   "Quality Check",
   "Ready for Delivery",
 ];
-
 
 export const StatusCell = ({ row }: { row: any }) => {
   const [status, setStatus] = useState<string>(row.original.status);
@@ -74,27 +75,31 @@ export const StatusCell = ({ row }: { row: any }) => {
   );
 };
 
-
 export const ordersColumns: ColumnDef<Order>[] = [
   {
     accessorKey: "id",
     header: "ID",
   },
   {
-    accessorKey: "orderNo",
-    header: "Order No",
+    accessorKey: "orderId",
+    header: "Order Id",
   },
   {
+    accessorKey: "customerName",
+    header: "Customer Name",
+  },
+ 
+  {
+    accessorKey: "assignedTo",
+    header: "Assigned To",
+  },
+   {
     accessorKey: "status",
     header: "Status",
     cell: ({ row }) => <StatusCell row={row} />,
   },
   {
-    accessorKey: "assignedTo",
-    header: "Assigned To",
-  },
-  {
     accessorKey: "date",
-    header: "Date",
+    header: "Dead line",
   },
 ];

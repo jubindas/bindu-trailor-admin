@@ -24,9 +24,9 @@ interface DataTablePaginationProps<TData> {
 export function DataTablePagination<TData>({ table }: DataTablePaginationProps<TData>) {
   return (
     <div className="flex flex-col md:flex-row items-center justify-between gap-2 px-4 py-2 bg-inherit border-t border-zinc-300 rounded-b-xl">
-      {/* Rows per page */}
+ 
       <div className="flex items-center space-x-2">
-        <p className="text-xs font-medium text-zinc-600 whitespace-nowrap">
+        <p className="text-xs font-medium text-zinc-200 whitespace-nowrap">
           Rows per page
         </p>
         <Select
@@ -40,7 +40,7 @@ export function DataTablePagination<TData>({ table }: DataTablePaginationProps<T
           </SelectTrigger>
           <SelectContent
             side="top"
-            className="bg-zinc-200 text-zinc-900 border border-zinc-400"
+            className="bg-zinc-200 text-zinc-200 border border-zinc-400"
           >
             {[10, 20, 30, 40, 50].map((pageSize) => (
               <SelectItem
@@ -54,13 +54,10 @@ export function DataTablePagination<TData>({ table }: DataTablePaginationProps<T
           </SelectContent>
         </Select>
       </div>
-
-      {/* Page info */}
-      <div className="text-xs text-zinc-600 font-medium text-center">
+      <div className="text-xs text-zinc-200 font-medium text-center">
         Page {table.getState().pagination.pageIndex + 1} of {table.getPageCount()}
       </div>
 
-      {/* Pagination buttons */}
       <div className="flex items-center space-x-1">
         <Button
           variant="outline"

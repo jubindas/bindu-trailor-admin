@@ -1,6 +1,6 @@
 export interface CuttingOrder {
   id: string;
-  orderNo: string;
+  orderId: string;
   garment: string;
   materials: string[];
   qty: number;

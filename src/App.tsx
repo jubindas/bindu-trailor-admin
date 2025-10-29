@@ -11,6 +11,7 @@ import CuttingManager from "./pages/CuttingManager";
 import Dashboard from "./pages/Dashboard";
 
 import LoginPage from "./pages/LoginPage";
+import CuttingManagerDialog from "./components/CuttingManagerDialog";
 
 const router = createBrowserRouter([
   {
@@ -28,6 +29,10 @@ const router = createBrowserRouter([
       {
         path: "/work-assignment",
         element: <CuttingManager />,
+      },
+       {
+        path: "/work-load",
+        element: <CuttingManagerDialog />,
       },
       {
         path: "/order-status",

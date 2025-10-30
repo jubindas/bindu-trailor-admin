@@ -3,7 +3,7 @@ import type { CuttingOrder } from "@/table-types/cutting-manager";
 export const cuttingOrders: CuttingOrder[] = [
   {
     id: "1",
-    orderNo: "ORD-001",
+    orderId: "ORD-001",
     garment: "Shirt",
     materials: ["FAB001", "BTN001"],
     qty: 2,
@@ -11,7 +11,7 @@ export const cuttingOrders: CuttingOrder[] = [
   },
   {
     id: "2",
-    orderNo: "ORD-002",
+    orderId: "ORD-002",
     garment: "Kurta",
     materials: ["FAB003", "THR004", "ZIP002"],
     qty: 1,

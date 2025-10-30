@@ -7,6 +7,7 @@ import {
   UserPen,
   PackageOpen,
   User,
+  Spool,
 } from "lucide-react";
 import { NavLink, useLocation } from "react-router-dom";
 
@@ -33,7 +34,7 @@ const items: MenuItem[] = [
   { title: "Work Assignment", url: "/work-assignment", icon: UserPen },
   { title: "Employee", url: "/employee", icon: User },
   { title: "Order Status", url: "/order-status", icon: PackageOpen },
-  { title: "Stitching Status", url: "/stitching", icon: PackageOpen },
+  { title: "Stitching Status", url: "/stitching", icon: Spool },
 ];
 
 export function AppSidebar() {

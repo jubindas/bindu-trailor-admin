@@ -4,8 +4,8 @@ import CuttingManagerAction from "@/columns-dropdown/CuttingManagerAction";
 
 export const cuttingColumns: ColumnDef<CuttingOrder>[] = [
   {
-    accessorKey: "orderNo",
-    header: "Order No",
+    accessorKey: "orderId",
+    header: "Order Id",
   },
   {
     accessorKey: "garment",

@@ -44,6 +44,8 @@ export default function CuttingManagerPage() {
   const [selectedDays, setSelectedDays] = useState<Record<string, boolean>>({});
   const [openDialog, setOpenDialog] = useState<string | null>(null);
 
+  const [garmentData, setGarmentData] = useState<string | null>(null);
+
   const materialCodes = [
     "COTTON-RED-001",
     "DENIM-BLU-002",
@@ -106,6 +108,11 @@ export default function CuttingManagerPage() {
     },
   ]);
 
+  const garments = [
+    { id: 1, name: "Formal Shirt", type: "Men" },
+    { id: 2, name: "Kurti", type: "Women" },
+  ];
+
   const toggleAvailability = (name: string) => {
     setStitchers((prev) =>
       prev.map((s) => (s.name === name ? { ...s, available: !s.available } : s))
@@ -124,20 +131,40 @@ export default function CuttingManagerPage() {
     grouped.push(stitchers.slice(i, i + 2));
   }
 
-  const handleSave = () => {
-    if (!selectedMaterial || !quantityCut) {
-      alert("Please fill all required fields before saving.");
-      return;
-    }
-    const assignedDays = Object.keys(selectedDays).filter(
-      (d) => selectedDays[d]
-    );
-    alert(
-      `Cutting order saved!\nMaterial: ${selectedMaterial}\nDays: ${assignedDays.join(
-        ", "
-      )}`
-    );
+ const handleSave = () => {
+  if (!selectedMaterial || !quantityCut || !garmentData) {
+    alert("Please fill all required fields before saving.");
+    return;
+  }
+
+  const assignedDays = Object.keys(selectedDays).filter((d) => selectedDays[d]);
+
+  // prepare a data object
+  const cuttingOrderData = {
+    garment: garmentData,
+    material: selectedMaterial,
+    quantity: quantityCut,
+    assignedDays,
+    remarks,
+    timestamp: new Date().toLocaleString(),
   };
+
+  console.log("🧵 Cutting Order Data:", cuttingOrderData);
+
+  alert(
+    `✅ Cutting order saved!\nMaterial: ${selectedMaterial}\nGarment: ${garmentData}\nQuantity: ${quantityCut}\nDays: ${assignedDays.join(
+      ", "
+    )}\nRemarks: ${remarks || "None"}`
+  );
+
+  // Optional: reset all fields after save
+  setSelectedMaterial("");
+  setQuantityCut("");
+  setRemarks("");
+  setSelectedDays({});
+  setGarmentData(null);
+};
+
 
   return (
     <div className="min-h-screen px-6 py-10">
@@ -151,7 +178,6 @@ export default function CuttingManagerPage() {
       </div>
 
       <div className="max-w-5xl mx-auto bg-[#1F2937] rounded-2xl shadow-lg p-6 space-y-6">
-
         <div>
           <Label className="font-semibold text-gray-200">Material Code *</Label>
           <Popover open={materialOpen} onOpenChange={setMaterialOpen}>
@@ -209,6 +235,36 @@ export default function CuttingManagerPage() {
             className="w-full bg-purple-200 border border-purple-300 text-purple-700 mt-1 hover:bg-purple-50"
           />
         </div>
+
+      <div>
+  <Label className="font-semibold text-gray-200 mb-2 block">
+    Garments List
+  </Label>
+
+  <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+    {garments.map((g) => (
+      <div
+        key={g.id}
+        onClick={() => setGarmentData(g.name)}
+        className={`p-4 rounded-lg text-center shadow-sm transition cursor-pointer 
+          ${garmentData === g.name 
+            ? "bg-purple-500 text-white border-2 border-purple-700" 
+            : "bg-purple-300 hover:bg-purple-200 text-purple-800"
+          }`}
+      >
+        <h3 className="font-semibold">{g.name}</h3>
+        <p className="text-sm mt-1">{g.type}</p>
+      </div>
+    ))}
+  </div>
+
+  {garmentData && (
+    <p className="text-sm text-green-300 mt-2">
+      ✅ Selected Garment: {garmentData}
+    </p>
+  )}
+</div>
+
 
         <div>
           <Label className="font-semibold text-gray-200 mb-2 block">

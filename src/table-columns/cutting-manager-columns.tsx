@@ -10,6 +10,18 @@ export const cuttingColumns: ColumnDef<CuttingOrder>[] = [
   {
     accessorKey: "garment",
     header: "Garment",
+    cell: ({ row }) => (
+      <div className="flex flex-wrap gap-1">
+        {row.original.garment.map((g, idx) => (
+          <span
+            key={idx}
+            className="px-2 py-1 text-xs bg-blue-100 text-blue-700 rounded-md"
+          >
+            {g}
+          </span>
+        ))}
+      </div>
+    ),
   },
   {
     accessorKey: "materials",

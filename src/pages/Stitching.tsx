@@ -1,4 +1,5 @@
 import { DataTable } from "@/components/data-table";
+
 import { employeeColumns } from "@/table-columns/employee-columns";
 
 export default function Stitching() {

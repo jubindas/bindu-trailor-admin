@@ -6,6 +6,7 @@ import {
   ChevronDown,
   UserPen,
   PackageOpen,
+  User,
 } from "lucide-react";
 import { NavLink, useLocation } from "react-router-dom";
 
@@ -30,7 +31,9 @@ interface MenuItem {
 const items: MenuItem[] = [
   { title: "Dashboard", url: "/", icon: Home },
   { title: "Work Assignment", url: "/work-assignment", icon: UserPen },
+  { title: "Employee", url: "/employee", icon: User },
   { title: "Order Status", url: "/order-status", icon: PackageOpen },
+  { title: "Stitching Status", url: "/stitching", icon: PackageOpen },
 ];
 
 export function AppSidebar() {

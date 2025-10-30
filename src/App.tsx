@@ -12,6 +12,8 @@ import Dashboard from "./pages/Dashboard";
 
 import LoginPage from "./pages/LoginPage";
 import CuttingManagerDialog from "./components/CuttingManagerDialog";
+import Employee from "./pages/Employee";
+import Stitching from "./pages/Stitching";
 
 const router = createBrowserRouter([
   {
@@ -30,13 +32,21 @@ const router = createBrowserRouter([
         path: "/work-assignment",
         element: <CuttingManager />,
       },
-       {
+      {
         path: "/work-load",
         element: <CuttingManagerDialog />,
       },
       {
         path: "/order-status",
         element: <Orders />,
+      },
+      {
+        path: "/employee",
+        element: <Employee />,
+      },
+      {
+        path: "/stitching",
+        element: <Stitching />,
       },
     ],
   },

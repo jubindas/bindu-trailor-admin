@@ -32,24 +32,21 @@ interface MenuItem {
 }
 
 export function AppSidebar() {
-
   const [openMenus, setOpenMenus] = useState<string[]>([]);
 
   const location = useLocation();
 
   const role = "cuttingManager"; // employee or cuttingManager
 
-
   const cuttingManagerItems: MenuItem[] = [
-    
     { title: "Dashboard", url: "/", icon: Home },
-    { title: "Work Assignment", url: "/work-assignment", icon: UserPen },
-    { title: "Employee", url: "/employee", icon: User },
-    { title: "Order Status", url: "/order-status", icon: PackageOpen },
+    { title: "Work Assignment", url: "work-assignment", icon: UserPen },
+    { title: "Employee", url: "employee", icon: User },
+    { title: "Order Status", url: "order-status", icon: PackageOpen },
   ];
 
   const employeeItems: MenuItem[] = [
-    { title: "Stitching Status", url: "/stitching", icon: Spool },
+    { title: "Stitching Status", url: "stitching", icon: Spool },
   ];
 
   const items = role === "cuttingManager" ? cuttingManagerItems : employeeItems;

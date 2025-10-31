@@ -28,27 +28,27 @@ const router = createBrowserRouter([
     element: <RootLayout />,
     children: [
       {
-        path: "/",
+        index: true,
         element: <Dashboard />,
       },
       {
-        path: "/work-assignment",
+        path: "work-assignment",
         element: <CuttingManager />,
       },
       {
-        path: "/work-load",
+        path: "work-load",
         element: <CuttingManagerDialog />,
       },
       {
-        path: "/order-status",
+        path: "order-status",
         element: <Orders />,
       },
       {
-        path: "/employee",
+        path: "employee",
         element: <Employee />,
       },
       {
-        path: "/stitching",
+        path: "stitching",
         element: <Stitching />,
       },
     ],

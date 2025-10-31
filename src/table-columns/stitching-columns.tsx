@@ -62,11 +62,9 @@ export const stitchingColumns: ColumnDef<Stitching>[] = [
           </SelectTrigger>
 
           <SelectContent className="bg-[#1F2937] text-gray-200 border-[#374151]">
-            <SelectItem value="Cutting Pending">Cutting Pending</SelectItem>
+            <SelectItem value="Cutting Pending">Pending</SelectItem>
             <SelectItem value="In Production">In Production</SelectItem>
-            <SelectItem value="Quality Check">Quality Check</SelectItem>
             <SelectItem value="Completed">Completed</SelectItem>
-            <SelectItem value="Delayed">Delayed</SelectItem>
           </SelectContent>
         </Select>
       );

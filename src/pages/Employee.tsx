@@ -5,8 +5,17 @@ import EmployeeDialog from "@/components/EmployeeDialog";
 import { employees } from "@/data/employee-data";
 
 import { employeeColumns } from "@/table-columns/employee-columns";
+import { useState } from "react";
 
 export default function Employee() {
+  const [searchTerm, setSearchTerm] = useState("");
+
+  const filteredEmployees = employees.filter((employee) =>
+    Object.values(employee).some((value) =>
+      String(value).toLowerCase().includes(searchTerm.toLowerCase())
+    )
+  );
+
   return (
     <div className="min-h-screen p-6">
       <div className="flex flex-col bg-[#1F2937] p-4 rounded-lg mt-10 md:flex-row items-start md:items-center justify-between mb-6 gap-4">
@@ -19,6 +28,10 @@ export default function Employee() {
             <span className="font-medium">Search:</span>
             <input
               type="text"
+              value={searchTerm}
+              onChange={(e) => {
+                setSearchTerm(e.target.value);
+              }}
               placeholder="Type to search..."
               className="border border-zinc-300 rounded-md px-3 py-2 bg-white text-zinc-800 placeholder-zinc-400 shadow-sm focus:ring-2 focus:ring-purple-500 focus:outline-none transition-all w-64"
             />
@@ -32,7 +45,7 @@ export default function Employee() {
 
       <div className="rounded-xl border border-zinc-200 bg-white shadow-md overflow-hidden">
         <DataTable
-          data={employees}
+          data={filteredEmployees}
           columns={employeeColumns}
           enablePagination
         />

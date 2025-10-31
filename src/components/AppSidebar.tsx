@@ -37,7 +37,7 @@ export function AppSidebar() {
 
   const location = useLocation();
 
-  const role = "employee"; // or "employee"
+  const role = "cuttingManager"; // employee or cuttingManager
 
 
   const cuttingManagerItems: MenuItem[] = [

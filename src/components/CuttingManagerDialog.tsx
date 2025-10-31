@@ -31,6 +31,9 @@ import {
   CommandEmpty,
 } from "@/components/ui/command";
 
+import { Calendar } from "@/components/ui/calendar";
+import { CalendarIcon } from "lucide-react";
+
 import {
   ChevronsUpDownIcon,
   CheckIcon,
@@ -40,9 +43,9 @@ import {
 } from "lucide-react";
 
 import { cn } from "@/lib/utils";
+import { format } from "date-fns/format";
 
 export default function CuttingManagerPage() {
-
   const [materialOpen, setMaterialOpen] = useState(false);
 
   const [selectedMaterial, setSelectedMaterial] = useState("");
@@ -56,6 +59,9 @@ export default function CuttingManagerPage() {
   const [openDialog, setOpenDialog] = useState<string | null>(null);
 
   const [garmentData, setGarmentData] = useState<string | null>(null);
+
+  const [date, setDate] = useState<Date>();
+  console.log("Selected Date:", date);
 
   const materialCodes = [
     "COTTON-RED-001",
@@ -142,39 +148,40 @@ export default function CuttingManagerPage() {
     grouped.push(stitchers.slice(i, i + 2));
   }
 
- const handleSave = () => {
-  if (!selectedMaterial || !quantityCut || !garmentData) {
-    alert("Please fill all required fields before saving.");
-    return;
-  }
+  const handleSave = () => {
+    if (!selectedMaterial || !quantityCut || !garmentData) {
+      alert("Please fill all required fields before saving.");
+      return;
+    }
 
-  const assignedDays = Object.keys(selectedDays).filter((d) => selectedDays[d]);
+    const assignedDays = Object.keys(selectedDays).filter(
+      (d) => selectedDays[d]
+    );
 
-  const cuttingOrderData = {
-    garment: garmentData,
-    material: selectedMaterial,
-    quantity: quantityCut,
-    assignedDays,
-    remarks,
-    timestamp: new Date().toLocaleString(),
+    const cuttingOrderData = {
+      garment: garmentData,
+      material: selectedMaterial,
+      quantity: quantityCut,
+      assignedDays,
+      remarks,
+      timestamp: new Date().toLocaleString(),
+      date: date ? format(date, "PPP") : "Not specified",
+    };
+
+    console.log("🧵 Cutting Order Data:", cuttingOrderData);
+
+    alert(
+      `✅ Cutting order saved!\nMaterial: ${selectedMaterial}\nGarment: ${garmentData}\nQuantity: ${quantityCut}\nDays: ${assignedDays.join(
+        ", "
+      )}\nRemarks: ${remarks || "None"}`
+    );
+
+    setSelectedMaterial("");
+    setQuantityCut("");
+    setRemarks("");
+    setSelectedDays({});
+    setGarmentData(null);
   };
-
-  console.log("🧵 Cutting Order Data:", cuttingOrderData);
-
-  alert(
-    `✅ Cutting order saved!\nMaterial: ${selectedMaterial}\nGarment: ${garmentData}\nQuantity: ${quantityCut}\nDays: ${assignedDays.join(
-      ", "
-    )}\nRemarks: ${remarks || "None"}`
-  );
-
-  // Optional: reset all fields after save
-  setSelectedMaterial("");
-  setQuantityCut("");
-  setRemarks("");
-  setSelectedDays({});
-  setGarmentData(null);
-};
-
 
   return (
     <div className="min-h-screen px-6 py-10">
@@ -201,7 +208,7 @@ export default function CuttingManagerPage() {
                 <ChevronsUpDownIcon className="ml-2 h-4 w-4 text-purple-500" />
               </Button>
             </PopoverTrigger>
-            <PopoverContent className="w-[250px] p-0 bg-white border border-purple-300">
+            <PopoverContent className="w-220 p-0 bg-white border border-purple-300">
               <Command>
                 <CommandInput placeholder="Search material..." />
                 <CommandList>
@@ -246,35 +253,35 @@ export default function CuttingManagerPage() {
           />
         </div>
 
-      <div>
-  <Label className="font-semibold text-gray-200 mb-2 block">
-    Garments List
-  </Label>
+        <div>
+          <Label className="font-semibold text-gray-200 mb-2 block">
+            Garments List
+          </Label>
 
-  <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-    {garments.map((g) => (
-      <div
-        key={g.id}
-        onClick={() => setGarmentData(g.name)}
-        className={`p-4 rounded-lg text-center shadow-sm transition cursor-pointer 
-          ${garmentData === g.name 
-            ? "bg-purple-500 text-white border-2 border-purple-700" 
-            : "bg-purple-300 hover:bg-purple-200 text-purple-800"
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+            {garments.map((g) => (
+              <div
+                key={g.id}
+                onClick={() => setGarmentData(g.name)}
+                className={`p-4 rounded-lg text-center shadow-sm transition cursor-pointer 
+          ${
+            garmentData === g.name
+              ? "bg-purple-500 text-white border-2 border-purple-700"
+              : "bg-purple-300 hover:bg-purple-200 text-purple-800"
           }`}
-      >
-        <h3 className="font-semibold">{g.name}</h3>
-        <p className="text-sm mt-1">{g.type}</p>
-      </div>
-    ))}
-  </div>
+              >
+                <h3 className="font-semibold">{g.name}</h3>
+                <p className="text-sm mt-1">{g.type}</p>
+              </div>
+            ))}
+          </div>
 
-  {garmentData && (
-    <p className="text-sm text-green-300 mt-2">
-      ✅ Selected Garment: {garmentData}
-    </p>
-  )}
-</div>
-
+          {garmentData && (
+            <p className="text-sm text-green-300 mt-2">
+              ✅ Selected Garment: {garmentData}
+            </p>
+          )}
+        </div>
 
         <div>
           <Label className="font-semibold text-gray-200 mb-2 block">
@@ -382,6 +389,22 @@ export default function CuttingManagerPage() {
             ))}
           </div>
         </div>
+
+        <Popover>
+          <PopoverTrigger asChild>
+            <Button
+              variant="outline"
+              data-empty={!date}
+              className="bg-[#DAB2FF] data-[empty=true]:text-muted-foreground w-[280px] justify-start text-left font-normal"
+            >
+              <CalendarIcon />
+              {date ? format(date, "PPP") : <span>Pick a date</span>}
+            </Button>
+          </PopoverTrigger>
+          <PopoverContent className="w-auto p-0 bg-[#1F2937] text-white">
+            <Calendar mode="single" selected={date} onSelect={setDate} />
+          </PopoverContent>
+        </Popover>
 
         <div>
           <Label className="font-semibold text-gray-200">Remarks</Label>

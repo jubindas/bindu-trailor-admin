@@ -1,4 +1,5 @@
 import { useState } from "react";
+
 import {
   Dialog,
   DialogContent,
@@ -10,8 +11,11 @@ import {
 } from "@/components/ui/dialog";
 
 import { Input } from "@/components/ui/input";
+
 import { Label } from "@/components/ui/label";
+
 import { Button } from "@/components/ui/button";
+
 import {
   Popover,
   PopoverTrigger,
@@ -34,14 +38,21 @@ import {
   ToggleLeft,
   ToggleRight,
 } from "lucide-react";
+
 import { cn } from "@/lib/utils";
 
 export default function CuttingManagerPage() {
+
   const [materialOpen, setMaterialOpen] = useState(false);
+
   const [selectedMaterial, setSelectedMaterial] = useState("");
+
   const [quantityCut, setQuantityCut] = useState("");
+
   const [remarks, setRemarks] = useState("");
+
   const [selectedDays, setSelectedDays] = useState<Record<string, boolean>>({});
+
   const [openDialog, setOpenDialog] = useState<string | null>(null);
 
   const [garmentData, setGarmentData] = useState<string | null>(null);
@@ -139,7 +150,6 @@ export default function CuttingManagerPage() {
 
   const assignedDays = Object.keys(selectedDays).filter((d) => selectedDays[d]);
 
-  // prepare a data object
   const cuttingOrderData = {
     garment: garmentData,
     material: selectedMaterial,

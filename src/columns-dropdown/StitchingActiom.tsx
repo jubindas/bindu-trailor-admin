@@ -1,11 +1,15 @@
 import { useState } from "react";
+
 import { MoreVertical } from "lucide-react";
+
 import { Button } from "@/components/ui/button";
+
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
+
 import {
   AlertDialog,
   AlertDialogAction,
@@ -15,6 +19,7 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
 } from "@/components/ui/alert-dialog";
+
 import {
   Select,
   SelectContent,
@@ -22,6 +27,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+
 import type { Stitching } from "@/table-types/stitching-order";
 
 interface Props {
@@ -32,6 +38,7 @@ export default function StitchingAction({ rowData }: Props) {
   console.log("Row Data:", rowData);
 
   const [openDialog, setOpenDialog] = useState(false);
+
   const [selectedStatus, setSelectedStatus] = useState("");
 
   const handleUpdate = () => {
@@ -41,7 +48,6 @@ export default function StitchingAction({ rowData }: Props) {
 
   return (
     <>
-      {/* Popover with 3-dot button */}
       <Popover>
         <PopoverTrigger asChild>
           <Button
@@ -65,7 +71,6 @@ export default function StitchingAction({ rowData }: Props) {
         </PopoverContent>
       </Popover>
 
-      {/* Alert Dialog for updating status */}
       <AlertDialog open={openDialog} onOpenChange={setOpenDialog}>
         <AlertDialogContent className="bg-[#1F2937] border border-[#374151] text-gray-200">
           <AlertDialogHeader>

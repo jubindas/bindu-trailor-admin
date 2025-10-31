@@ -1,4 +1,5 @@
 import { SidebarTrigger } from "./ui/sidebar";
+
 import { User, LogOut } from "lucide-react";
 
 export default function Navbar() {

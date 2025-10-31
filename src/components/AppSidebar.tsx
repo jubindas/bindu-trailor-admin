@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useState, useEffect } from "react";
+
 import {
   Home,
   ChevronRight,
@@ -9,6 +10,7 @@ import {
   User,
   Spool,
 } from "lucide-react";
+
 import { NavLink, useLocation } from "react-router-dom";
 
 import {
@@ -30,14 +32,16 @@ interface MenuItem {
 }
 
 export function AppSidebar() {
+
   const [openMenus, setOpenMenus] = useState<string[]>([]);
+
   const location = useLocation();
 
-  // 🔹 Static role for now (you can later replace with localStorage or backend data)
   const role = "cuttingManager"; // or "employee"
 
-  // 🔹 Role-based menu items
+
   const cuttingManagerItems: MenuItem[] = [
+    
     { title: "Dashboard", url: "/", icon: Home },
     { title: "Work Assignment", url: "/work-assignment", icon: UserPen },
     { title: "Employee", url: "/employee", icon: User },
@@ -75,7 +79,6 @@ export function AppSidebar() {
     return item.children.some((child) => location.pathname === child.url);
   };
 
-  // 🔹 Render Sidebar
   return (
     <Sidebar className="bg-[#18181B] text-gray-300 w-64 min-h-screen border-r border-zinc-800">
       <SidebarContent>

@@ -1,5 +1,7 @@
 import type { ColumnDef } from "@tanstack/react-table";
+
 import type { CuttingOrder } from "@/table-types/cutting-manager";
+
 import CuttingManagerAction from "@/columns-dropdown/CuttingManagerAction";
 
 export const cuttingColumns: ColumnDef<CuttingOrder>[] = [

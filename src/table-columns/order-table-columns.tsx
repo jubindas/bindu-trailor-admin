@@ -1,4 +1,5 @@
 import type { ColumnDef } from "@tanstack/react-table";
+
 import { StatusCell } from "./StatusCell";
 
 import type { Order } from "@/table-types/order-table";

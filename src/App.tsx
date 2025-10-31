@@ -11,8 +11,11 @@ import CuttingManager from "./pages/CuttingManager";
 import Dashboard from "./pages/Dashboard";
 
 import LoginPage from "./pages/LoginPage";
+
 import CuttingManagerDialog from "./components/CuttingManagerDialog";
+
 import Employee from "./pages/Employee";
+
 import Stitching from "./pages/Stitching";
 
 const router = createBrowserRouter([

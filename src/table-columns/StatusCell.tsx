@@ -8,18 +8,11 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 
-// import type { Order } from "@/table-types/order-table";
+import type { Order } from "@/table-types/order-table";
 
-export interface Order {
-  id: number;
-  orderId: string;
-  coustomerName: string;
-  status: string;
-  assignedTo: string;
-  date: string;
-}
 
-const getStatusColor = (status: string) => {
+
+const getStatusColor = (status: Order["status"]) => {
   switch (status) {
     case "Cutting Pending":
       return "bg-yellow-100 text-yellow-800";

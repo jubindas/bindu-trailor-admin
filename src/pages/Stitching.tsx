@@ -1,6 +1,8 @@
 import { DataTable } from "@/components/data-table";
 
-import { employeeColumns } from "@/table-columns/employee-columns";
+import { stitchingData } from "@/data/stitching-order-data";
+
+import { stitchingColumns } from "@/table-columns/stitching-columns";
 
 export default function Stitching() {
   return (
@@ -25,8 +27,8 @@ export default function Stitching() {
 
       <div className="rounded-xl border border-zinc-200 bg-white shadow-md overflow-hidden">
         <DataTable
-          data={[]}
-          columns={employeeColumns}
+          data={stitchingData}
+          columns={stitchingColumns}
           enablePagination
         />
       </div>

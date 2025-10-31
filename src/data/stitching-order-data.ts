@@ -1,0 +1,68 @@
+import type { Stitching } from "../table-types/stitching-order";
+
+export const stitchingData: Stitching[] = [
+  {
+    orderId: "ORD-1001",
+    garmentType: "T-Shirt",
+    quantity: 120,
+    metarialCode: ["MAT-A12", "MAT-B34", "MAT-C56"],
+    status: "In Production",
+    remarks: "Stitch collar with reinforced seam",
+  },
+  {
+    orderId: "ORD-1002",
+    garmentType: "Denim Jeans",
+    quantity: 60,
+    metarialCode: ["MAT-D45"],
+    status: "Cutting Pending",
+    remarks: "Awaiting fabric arrival",
+  },
+  {
+    orderId: "ORD-1003",
+    garmentType: "Hoodie",
+    quantity: 40,
+    metarialCode: ["MAT-H08"],
+    status: "Quality Check",
+    remarks: "Check zipper alignment and hood stitching",
+  },
+  {
+    orderId: "ORD-1004",
+    garmentType: "Formal Shirt",
+    quantity: 90,
+    metarialCode: ["MAT-F22", "MAT-F23"],
+    status: "In Production",
+    remarks: "Add inner label with brand tag",
+  },
+  {
+    orderId: "ORD-1005",
+    garmentType: "Skirt",
+    quantity: 75,
+    metarialCode: ["MAT-S33", "MAT-S34"],
+    status: "Completed",
+    remarks: "All stitching verified and approved",
+  },
+  {
+    orderId: "ORD-1006",
+    garmentType: "Blazer",
+    quantity: 30,
+    metarialCode: ["MAT-B90"],
+    status: "Delayed",
+    remarks: "Lining material shortage",
+  },
+  {
+    orderId: "ORD-1007",
+    garmentType: "Polo Shirt",
+    quantity: 150,
+    metarialCode: ["MAT-P11"],
+    status: "In Production",
+    remarks: "Embroidery placement confirmed",
+  },
+  {
+    orderId: "ORD-1008",
+    garmentType: "Cargo Pants",
+    quantity: 45,
+    metarialCode: ["MAT-C70"],
+    status: "Cutting Pending",
+    remarks: "Need pocket reinforcement samples",
+  },
+];

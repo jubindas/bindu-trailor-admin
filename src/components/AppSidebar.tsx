@@ -29,17 +29,26 @@ interface MenuItem {
   children?: MenuItem[];
 }
 
-const items: MenuItem[] = [
-  { title: "Dashboard", url: "/", icon: Home },
-  { title: "Work Assignment", url: "/work-assignment", icon: UserPen },
-  { title: "Employee", url: "/employee", icon: User },
-  { title: "Order Status", url: "/order-status", icon: PackageOpen },
-  { title: "Stitching Status", url: "/stitching", icon: Spool },
-];
-
 export function AppSidebar() {
   const [openMenus, setOpenMenus] = useState<string[]>([]);
   const location = useLocation();
+
+  // 🔹 Static role for now (you can later replace with localStorage or backend data)
+  const role = "cuttingManager"; // or "employee"
+
+  // 🔹 Role-based menu items
+  const cuttingManagerItems: MenuItem[] = [
+    { title: "Dashboard", url: "/", icon: Home },
+    { title: "Work Assignment", url: "/work-assignment", icon: UserPen },
+    { title: "Employee", url: "/employee", icon: User },
+    { title: "Order Status", url: "/order-status", icon: PackageOpen },
+  ];
+
+  const employeeItems: MenuItem[] = [
+    { title: "Stitching Status", url: "/stitching", icon: Spool },
+  ];
+
+  const items = role === "cuttingManager" ? cuttingManagerItems : employeeItems;
 
   useEffect(() => {
     const activeParents = items
@@ -53,7 +62,7 @@ export function AppSidebar() {
     if (activeParents.length > 0) {
       setOpenMenus((prev) => Array.from(new Set([...prev, ...activeParents])));
     }
-  }, [location.pathname]);
+  }, [location.pathname, items]);
 
   const toggleMenu = (title: string) => {
     setOpenMenus((prev) =>
@@ -66,12 +75,15 @@ export function AppSidebar() {
     return item.children.some((child) => location.pathname === child.url);
   };
 
+  // 🔹 Render Sidebar
   return (
     <Sidebar className="bg-[#18181B] text-gray-300 w-64 min-h-screen border-r border-zinc-800">
       <SidebarContent>
         <SidebarGroup>
           <SidebarGroupLabel className="px-4 py-5 text-xs uppercase tracking-widest font-semibold text-zinc-400">
-            STOCK MODULES
+            {role === "cuttingManager"
+              ? "Cutting Manager Panel"
+              : "Employee Panel"}
           </SidebarGroupLabel>
 
           <SidebarGroupContent>
@@ -85,7 +97,7 @@ export function AppSidebar() {
                         className={`flex items-center justify-between w-full px-4 py-2 text-sm transition rounded-md ${
                           isParentActive(item) || openMenus.includes(item.title)
                             ? "bg-zinc-800 text-white"
-                            : "hover:bg-white hover:text-white"
+                            : "hover:bg-zinc-700 hover:text-white"
                         }`}
                       >
                         <div className="flex items-center gap-3">
@@ -109,7 +121,7 @@ export function AppSidebar() {
                                 `block px-3 py-1.5 text-sm rounded-md transition ${
                                   isActive
                                     ? "bg-[#8C03E9] text-white"
-                                    : "text-gray-400 hover:text-white hover:bg-white"
+                                    : "text-gray-400 hover:text-white hover:bg-zinc-700"
                                 }`
                               }
                             >
@@ -126,7 +138,7 @@ export function AppSidebar() {
                         `flex items-center gap-3 px-4 py-2 text-sm rounded-md transition ${
                           isActive
                             ? "bg-[#8C03E9] text-white"
-                            : "text-gray-400 hover:bg-white hover:text-black"
+                            : "text-gray-400 hover:bg-zinc-700 hover:text-white"
                         }`
                       }
                     >

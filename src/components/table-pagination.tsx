@@ -40,13 +40,13 @@ export function DataTablePagination<TData>({ table }: DataTablePaginationProps<T
           </SelectTrigger>
           <SelectContent
             side="top"
-            className="bg-zinc-200 text-zinc-200 border border-zinc-400"
+            className="bg-zinc-700 text-zinc-200 border border-zinc-400"
           >
             {[10, 20, 30, 40, 50].map((pageSize) => (
               <SelectItem
                 key={pageSize}
                 value={`${pageSize}`}
-                className="text-xs hover:bg-zinc-300"
+                className="text-xs hover:bg-zinc-500"
               >
                 {pageSize}
               </SelectItem>

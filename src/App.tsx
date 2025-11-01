@@ -15,8 +15,7 @@ import LoginPage from "./pages/LoginPage";
 import CuttingManagerDialog from "./components/CuttingManagerDialog";
 
 import Employee from "./pages/Employee";
-
-import Stitching from "./pages/Stitching";
+import OrderDetails from "./pages/OrderDetails";
 
 const router = createBrowserRouter([
   {
@@ -36,6 +35,25 @@ const router = createBrowserRouter([
         element: <CuttingManager />,
       },
       {
+        path: "order-details",
+        element: (
+          <OrderDetails
+            garmentData={{
+              orderId: "ORD12345",
+              metarial: "Cotton",
+              garmentType: "Kurti",
+              basePrice: 300,
+              fabricSource: "Customer",
+              materialRate: 30,
+              quantity: 1,
+              additionalPrice: 4,
+              remarks: "hhh",
+              total: 334,
+            }}
+          />
+        ),
+      },
+      {
         path: "work-load",
         element: <CuttingManagerDialog />,
       },
@@ -46,10 +64,6 @@ const router = createBrowserRouter([
       {
         path: "employee",
         element: <Employee />,
-      },
-      {
-        path: "stitching",
-        element: <Stitching />,
       },
     ],
   },

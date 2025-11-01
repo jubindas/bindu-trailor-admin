@@ -68,6 +68,23 @@ export const cuttingColumns: ColumnDef<CuttingOrder>[] = [
     },
   },
   {
+    accessorKey: "assignedTo",
+    header: "Assigned To",
+  },
+  {
+    accessorKey: "employeeStatus",
+    header: "Employee Status",
+    cell: ({ row }) => {
+      const empStatus = row.original.employeeStatus;
+
+      return (
+        <span className="px-2 py-1 text-xs bg-yellow-300 text-black rounded-2xl">
+          {empStatus}
+        </span>
+      );
+    },
+  },
+  {
     accessorKey: "action",
     header: "Action",
     cell: () => <CuttingManagerAction />,

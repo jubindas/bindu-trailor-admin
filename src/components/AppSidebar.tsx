@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 import {
   Home,
@@ -8,7 +8,6 @@ import {
   UserPen,
   PackageOpen,
   User,
-  Spool,
 } from "lucide-react";
 
 import { NavLink, useLocation } from "react-router-dom";
@@ -36,34 +35,12 @@ export function AppSidebar() {
 
   const location = useLocation();
 
-  const role = "cuttingManager"; // employee or cuttingManager
-
-  const cuttingManagerItems: MenuItem[] = [
+  const items: MenuItem[] = [
     { title: "Dashboard", url: "/", icon: Home },
     { title: "Work Assignment", url: "work-assignment", icon: UserPen },
     { title: "Employee", url: "employee", icon: User },
     { title: "Order Status", url: "order-status", icon: PackageOpen },
   ];
-
-  const employeeItems: MenuItem[] = [
-    { title: "Stitching Status", url: "stitching", icon: Spool },
-  ];
-
-  const items = role === "cuttingManager" ? cuttingManagerItems : employeeItems;
-
-  useEffect(() => {
-    const activeParents = items
-      .filter(
-        (item) =>
-          item.children &&
-          item.children.some((child) => location.pathname === child.url)
-      )
-      .map((item) => item.title);
-
-    if (activeParents.length > 0) {
-      setOpenMenus((prev) => Array.from(new Set([...prev, ...activeParents])));
-    }
-  }, [location.pathname, items]);
 
   const toggleMenu = (title: string) => {
     setOpenMenus((prev) =>
@@ -81,9 +58,7 @@ export function AppSidebar() {
       <SidebarContent>
         <SidebarGroup>
           <SidebarGroupLabel className="px-4 py-5 text-xs uppercase tracking-widest font-semibold text-zinc-400">
-            {role === "cuttingManager"
-              ? "Cutting Manager Panel"
-              : "Employee Panel"}
+            Main Menu
           </SidebarGroupLabel>
 
           <SidebarGroupContent>

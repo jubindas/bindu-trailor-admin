@@ -35,6 +35,13 @@ export default function CuttingManagerAction() {
             >
               Manage
             </Button>
+            <Button
+              variant="ghost"
+              className="justify-start text-gray-200 hover:bg-[#374151]"
+              onClick={() => navigate("/order-details")}
+            >
+              View Details
+            </Button>
           </div>
         </PopoverContent>
       </Popover>

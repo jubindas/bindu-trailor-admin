@@ -9,7 +9,6 @@ import { Input } from "@/components/ui/input";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 
 export default function LoginPage() {
-
   const [showPassword, setShowPassword] = useState(false);
 
   const [form, setForm] = useState({ email: "", password: "" });
@@ -21,7 +20,6 @@ export default function LoginPage() {
   };
 
   const handleLogin = (e: React.FormEvent) => {
-    
     e.preventDefault();
     console.log("Login with:", form);
   };
@@ -73,9 +71,9 @@ export default function LoginPage() {
                 className="absolute right-3 top-2 text-gray-400 hover:text-purple-400 transition"
               >
                 {showPassword ? (
-                  <EyeOff className="w-5 h-5" />
-                ) : (
                   <Eye className="w-5 h-5" />
+                ) : (
+                  <EyeOff className="w-5 h-5" />
                 )}
               </button>
             </div>

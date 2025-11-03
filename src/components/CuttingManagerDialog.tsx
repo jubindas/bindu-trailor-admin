@@ -395,6 +395,7 @@ export default function CuttingManagerPage() {
                           </Label>
                           <Input
                             type="text"
+                            readOnly
                             value={value}
                             onChange={(e) =>
                               handleMeasurementChange(g.id, key, e.target.value)

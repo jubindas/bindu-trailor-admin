@@ -3,7 +3,10 @@ import { DataTable } from "@/components/data-table";
 import { cuttingOrders } from "@/data/cutting-manager-data";
 
 import { cuttingColumns } from "@/table-columns/cutting-manager-columns";
+
 import { useState } from "react";
+
+
 
 export default function CuttingManager() {
 

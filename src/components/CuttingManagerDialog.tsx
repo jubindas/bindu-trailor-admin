@@ -72,6 +72,7 @@ const garmentsList = [
 ];
 
 export default function CuttingManagerPage() {
+  
   const [selectedMaterial, setSelectedMaterial] = useState("");
 
   const [quantityCut, setQuantityCut] = useState("");
@@ -107,7 +108,6 @@ export default function CuttingManagerPage() {
         Thursday: { status: "Free", freeHours: 8 },
         Friday: { status: "1 Order", freeHours: 4 },
         Saturday: { status: "Free", freeHours: 7 },
-        Sunday: { status: "Off", freeHours: 0 },
       },
     },
     {
@@ -120,7 +120,6 @@ export default function CuttingManagerPage() {
         Thursday: { status: "Free", freeHours: 8 },
         Friday: { status: "Busy", freeHours: 3 },
         Saturday: { status: "Free", freeHours: 7 },
-        Sunday: { status: "Off", freeHours: 0 },
       },
     },
     {
@@ -133,7 +132,6 @@ export default function CuttingManagerPage() {
         Thursday: { status: "1 Order", freeHours: 6 },
         Friday: { status: "Free", freeHours: 8 },
         Saturday: { status: "2 Orders", freeHours: 3 },
-        Sunday: { status: "Off", freeHours: 0 },
       },
     },
     {
@@ -146,7 +144,6 @@ export default function CuttingManagerPage() {
         Thursday: { status: "Free", freeHours: 8 },
         Friday: { status: "1 Order", freeHours: 4 },
         Saturday: { status: "Free", freeHours: 8 },
-        Sunday: { status: "Off", freeHours: 0 },
       },
     },
   ]);
@@ -182,16 +179,6 @@ export default function CuttingManagerPage() {
   };
 
   const handleSave = () => {
-    if (
-      !selectedMaterial ||
-      !quantityCut ||
-      !garmentData ||
-      !selectedStitcher
-    ) {
-      alert("Please fill all required fields before saving.");
-      return;
-    }
-
     const assignedDays = Object.keys(selectedDays).filter(
       (d) => selectedDays[d]
     );

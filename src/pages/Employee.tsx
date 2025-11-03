@@ -5,9 +5,11 @@ import EmployeeDialog from "@/components/EmployeeDialog";
 import { employees } from "@/data/employee-data";
 
 import { employeeColumns } from "@/table-columns/employee-columns";
+
 import { useState } from "react";
 
 export default function Employee() {
+
   const [searchTerm, setSearchTerm] = useState("");
 
   const filteredEmployees = employees.filter((employee) =>

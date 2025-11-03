@@ -31,6 +31,7 @@ interface MenuItem {
 }
 
 export function AppSidebar() {
+
   const [openMenus, setOpenMenus] = useState<string[]>([]);
 
   const location = useLocation();
@@ -113,7 +114,7 @@ export function AppSidebar() {
                         `flex items-center gap-3 px-4 py-2 text-sm rounded-md transition ${
                           isActive
                             ? "bg-[#8C03E9] text-white"
-                            : "text-gray-400 hover:bg-zinc-700 hover:text-white"
+                            : "text-gray-400 hover:bg-white hover:text-black"
                         }`
                       }
                     >

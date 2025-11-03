@@ -35,6 +35,7 @@ interface Props {
 }
 
 export default function EmployeeDialog({ mode, trigger, initialData }: Props) {
+
   const [openDialog, setOpenDialog] = useState(false);
 
   const [name, setName] = useState("");
@@ -180,7 +181,7 @@ export default function EmployeeDialog({ mode, trigger, initialData }: Props) {
             )}
           </div>
 
-          {/* Password */}
+       
           <div className="grid gap-2 relative">
             <Label htmlFor="password" className="text-zinc-700">
               Password *

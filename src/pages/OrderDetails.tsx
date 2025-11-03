@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
 export default function OrderDetails({ garmentData }: any) {
+
   if (!garmentData) {
     return (
       <div className="text-center text-gray-400 mt-10 text-sm">
@@ -21,6 +22,7 @@ export default function OrderDetails({ garmentData }: any) {
     remarks,
   } = garmentData;
 
+  
   return (
     <div className="min-h-screen flex items-center justify-center bg-[#0f172a] text-gray-100 p-6">
       <div className="w-full max-w-3xl bg-[#1e293b] rounded-xl shadow-xl p-6 border border-gray-700">

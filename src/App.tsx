@@ -15,11 +15,12 @@ import LoginPage from "./pages/LoginPage";
 import CuttingManagerDialog from "./components/CuttingManagerDialog";
 
 import Employee from "./pages/Employee";
+
 import OrderDetails from "./pages/OrderDetails";
 
 const router = createBrowserRouter([
   {
-    path: "/login",
+    path: "login",
     element: <LoginPage />,
   },
   {

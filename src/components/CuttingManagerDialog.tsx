@@ -18,25 +18,13 @@ import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 
 import {
-  Popover,
-  PopoverTrigger,
-  PopoverContent,
-} from "@/components/ui/popover";
-
-import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 
-import { Calendar } from "@/components/ui/calendar";
-import {
-  Calendar as CalendarIcon,
-  ChevronsUpDown,
-  Check,
-  Clock,
-} from "lucide-react";
+import { ChevronsUpDown, Check, Clock } from "lucide-react";
 
 import { cn } from "@/lib/utils";
 
@@ -49,6 +37,8 @@ const garmentsList = [
     fabricSource: "Cotton",
     materialCode: "COTTON-RED-001",
     quantity: 150,
+    deadline: "03/12/2025",
+    measurementUnit: "INC",
     measurments: {
       length: "32 inches",
       chest: "40 inches",
@@ -66,6 +56,8 @@ const garmentsList = [
     fabricSource: "Silk",
     materialCode: "SILK-BLK-004",
     quantity: 100,
+    deadline: "01/09/2025",
+    measurementUnit: "INC",
     measurments: {
       length: "38 inches",
       chest: "42 inches",
@@ -97,6 +89,10 @@ export default function CuttingManagerPage() {
   const [availableGarments, setAvailableGarments] = useState(garmentsList);
 
   const [date, setDate] = useState<Date>();
+
+  const [quantityCutting, setQuantityCutting] = useState("");
+
+  const [measurementUnit, setMeasurementUnit] = useState("");
 
   console.log("Selected Date:", date);
 
@@ -169,8 +165,7 @@ export default function CuttingManagerPage() {
 
   const [editableGarments, setEditableGarments] = useState(garmentsList || []);
 
-  // ✅ Update measurement value
-  const handleMeasurementChange = ({garmentId, key, newValue}: any) => {
+  const handleMeasurementChange = (garmentId: any, key: any, newValue: any) => {
     setEditableGarments((prev) =>
       prev.map((g) =>
         g.id === garmentId
@@ -207,6 +202,7 @@ export default function CuttingManagerPage() {
       quantity: quantityCut,
       stitcher: selectedStitcher,
       assignedDays,
+      measurementUnit,
       assignedDate: date ? format(date, "PPP") : "Not specified",
       remarks,
       editableGarments,
@@ -298,47 +294,67 @@ export default function CuttingManagerPage() {
           )}
         </div>
 
-        <div>
-          <Label className="font-medium text-gray-200 text-sm">
-            Material Code *
-          </Label>
+        <div className="flex flex-row items-end gap-6">
+          {garmentData && (
+            <>
+              {editableGarments
+                .filter((g) => g.garmentType === garmentData)
+                .map((g) => (
+                  <div key={g.id} className="flex flex-row items-end gap-6">
+                    <div className="flex flex-col gap-1">
+                      <Label className="font-medium text-gray-200 text-sm">
+                        Deadline
+                      </Label>
+                      <Input
+                        type="text"
+                        value={g.deadline || "No deadline set"}
+                        readOnly
+                        className="bg-purple-100 border border-purple-300 text-purple-700 w-41 text-xs font-normal cursor-not-allowed"
+                      />
+                    </div>
 
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button
-                variant="outline"
-                className="w-full justify-between mt-1 bg-purple-100 text-purple-700 border border-purple-300 hover:bg-purple-50 text-xs"
-              >
-                {selectedMaterial || "Select Material"}
-                <ChevronsUpDown className="ml-2 h-4 w-4 text-purple-500" />
-              </Button>
-            </DropdownMenuTrigger>
+                    <div className="flex flex-col gap-1">
+                      <Label className="font-medium text-gray-200 text-sm">
+                        Material Code *
+                      </Label>
+                      <Input
+                        type="text"
+                        value={g.materialCode || "N/A"}
+                        readOnly
+                        className="bg-purple-100 border border-purple-300 text-purple-700 w-41 text-xs font-normal cursor-not-allowed"
+                      />
+                    </div>
+                    <div className="flex flex-col gap-1">
+                      <Label className="font-medium text-gray-200 text-sm">
+                        Quantity Cut *
+                      </Label>
+                      <Input
+                        type="number"
+                        placeholder="Enter quantity"
+                        value={quantityCutting}
+                        onChange={(e) => setQuantityCutting(e.target.value)}
+                        className="w-41 bg-purple-100 border border-purple-300 text-purple-700 hover:bg-purple-50 text-xs"
+                      />
+                    </div>
 
-            <DropdownMenuContent className="w-120 bg-white border border-purple-200 rounded-md shadow-md">
-              {garmentsList.map((mat) => (
-                <DropdownMenuItem
-                  key={mat.id}
-                  onClick={() => setSelectedMaterial(mat.materialCode)}
-                  className={cn(
-                    "flex justify-between text-gray-700 text-xs hover:bg-purple-50 cursor-pointer",
-                    selectedMaterial === mat.materialCode
-                      ? "bg-purple-100 text-purple-700"
-                      : ""
-                  )}
-                >
-                  {mat.materialCode}
-                  {selectedMaterial === mat.materialCode && (
-                    <Check className="h-3.5 w-3.5 text-purple-600" />
-                  )}
-                </DropdownMenuItem>
-              ))}
-            </DropdownMenuContent>
-          </DropdownMenu>
-
-          {selectedMaterial && (
-            <p className="text-xs text-green-400 mt-2">
-              Selected Material: {selectedMaterial}
-            </p>
+                    <div className="flex flex-col gap-1">
+                      <Label className="font-medium text-gray-200 text-sm">
+                        Measurement Unit
+                      </Label>
+                      <select
+                        value={g.measurementUnit}
+                        onChange={(e) => setMeasurementUnit(e.target.value)}
+                        className="w-41 h-9 bg-purple-100 border border-purple-300 text-purple-700 text-xs rounded-md px-2 py-1 focus:outline-none hover:bg-purple-50"
+                      >
+                        <option value="pcs">INC</option>
+                        <option value="meters">MM</option>
+                        <option value="kg">CM</option>
+                        <option value="dozen">YD</option>
+                      </select>
+                    </div>
+                  </div>
+                ))}
+            </>
           )}
         </div>
 
@@ -360,9 +376,7 @@ export default function CuttingManagerPage() {
                     <p className="mt-2 text-sm font-medium text-purple-700 text-center">
                       {g.garmentType}
                     </p>
-                    <p className="text-xs text-gray-500">
-                      Material: {g.materialCode}
-                    </p>
+
                     <p className="text-xs text-gray-500">Qty: {g.quantity}</p>
                   </div>
 
@@ -395,19 +409,6 @@ export default function CuttingManagerPage() {
               ))}
           </div>
         )}
-
-        <div>
-          <Label className="font-medium text-gray-200 text-sm">
-            Quantity Cut *
-          </Label>
-          <Input
-            type="number"
-            placeholder="Enter quantity"
-            value={quantityCut}
-            onChange={(e) => setQuantityCut(e.target.value)}
-            className="w-full bg-purple-100 border border-purple-300 text-purple-700 mt-1 hover:bg-purple-50 text-xs"
-          />
-        </div>
 
         <div>
           <Label className="font-medium text-gray-200 mb-2 block text-sm">
@@ -496,38 +497,15 @@ export default function CuttingManagerPage() {
           </div>
         </div>
 
-        {/* Deadline */}
-        <div className="flex flex-col gap-1">
-          <Label className="font-medium text-gray-200 text-sm">Deadline</Label>
-          <Popover>
-            <PopoverTrigger asChild>
-              <Button
-                variant="outline"
-                data-empty={!date}
-                className="bg-purple-100 border border-purple-300 text-purple-700 w-[220px] justify-start text-left font-normal text-xs"
-              >
-                <CalendarIcon className="mr-2" />
-                {date ? format(date, "PPP") : <span>Select date</span>}
-              </Button>
-            </PopoverTrigger>
-            <PopoverContent className="w-auto p-0 bg-[#1F2937] text-white">
-              <Calendar mode="single" selected={date} onSelect={setDate} />
-            </PopoverContent>
-          </Popover>
-        </div>
-
-        {/* Remarks */}
         <div>
           <Label className="font-medium text-gray-200 text-sm">Remarks</Label>
-          <Input
-            placeholder="Any notes or special instructions"
+          <textarea
             value={remarks}
             onChange={(e) => setRemarks(e.target.value)}
-            className="w-full bg-purple-100 border border-purple-300 text-purple-700 mt-1 hover:bg-purple-50 text-xs"
+            className="w-full h-15 bg-purple-100 border border-purple-300 rounded mt-1 hover:bg-purple-50 "
           />
         </div>
 
-        {/* Save Button */}
         <div className="flex justify-end pt-4 border-t border-gray-700 mt-2">
           <Button
             onClick={handleSave}

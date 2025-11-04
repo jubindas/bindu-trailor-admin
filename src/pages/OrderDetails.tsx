@@ -40,7 +40,6 @@ export default function OrderDetails() {
           <Shirt size={32} /> Order Details
         </h1>
 
-        {/* Customer Info */}
         <div className="bg-gray-200 p-6 rounded-2xl shadow-md border border-gray-300">
           <h2 className="font-semibold text-xl mb-4 text-purple-900 flex items-center gap-2">
             <User /> Customer Information
@@ -61,7 +60,6 @@ export default function OrderDetails() {
           </div>
         </div>
 
-        {/* Order Info */}
         <div className="bg-gray-200 p-6 rounded-2xl shadow-md border border-gray-300">
           <h2 className="font-semibold text-xl mb-4 text-purple-900 flex items-center gap-2">
             <Shirt /> Order Information
@@ -95,9 +93,7 @@ export default function OrderDetails() {
           </div>
         </div>
 
-        {/* Images Section */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-10">
-          {/* Template Image */}
           <div className="space-y-3">
             <h2 className="font-semibold text-xl text-purple-400 flex items-center gap-2">
               <ImageIcon /> Template Design
@@ -120,10 +116,9 @@ export default function OrderDetails() {
             </Dialog>
           </div>
 
-          {/* User Uploaded Image */}
           <div className="space-y-3">
             <h2 className="font-semibold text-xl text-purple-400 flex items-center gap-2">
-              <ImageIcon /> Uploaded Image
+              <ImageIcon /> Client Reference
             </h2>
             <Dialog>
               <DialogTrigger asChild>
@@ -144,7 +139,6 @@ export default function OrderDetails() {
           </div>
         </div>
 
-        {/* Measurements */}
         <div className="bg-gray-200 p-6 rounded-2xl shadow-md border border-gray-300">
           <h2 className="font-semibold text-xl mb-4 text-purple-900 flex items-center gap-2">
             <Ruler /> Measurements

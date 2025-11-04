@@ -184,20 +184,32 @@ export default function CuttingManagerPage() {
 
     const cuttingOrderData = {
       garment: garmentData,
+
       material: selectedMaterial,
+
       quantity: quantityCut,
+
       stitcher: selectedStitcher,
+
       assignedDays,
+
       measurementUnit,
+
       assignedDate: date ? format(date, "PPP") : "Not specified",
+
       remarks,
+
       editableGarments,
+
       createdAt: new Date().toLocaleString(),
     };
 
     console.clear();
+
     console.group("Cutting Order Summary");
+
     console.table(cuttingOrderData);
+
     console.groupEnd();
 
     alert(
@@ -216,17 +228,24 @@ export default function CuttingManagerPage() {
     );
 
     setSelectedMaterial("");
+
     setQuantityCut("");
+
     setRemarks("");
+
     setSelectedDays({});
+
     setGarmentData(undefined);
+
     setSelectedStitcher(null);
+
     setDate(undefined);
+
     setOpenDialog(null);
   };
 
   return (
-    <div className="min-h-screen px-4 py-8">
+    <div className="min-h-screen px-2 sm:px-6 md:px-10 py-8">
       <div className="text-center mb-6">
         <h1 className="text-2xl font-bold text-purple-700 tracking-tight">
           Cutting Manager Panel
@@ -236,7 +255,7 @@ export default function CuttingManagerPage() {
         </p>
       </div>
 
-      <div className="max-w-3xl mx-auto bg-[#1F2937] border border-white rounded-xl shadow-md p-5 space-y-5">
+      <div className="max-w-6xl mx-auto bg-[#1F2937] border border-white rounded-xl shadow-md p-5 space-y-5">
         <div>
           <Label className="font-medium text-gray-200 mb-2 block text-sm">
             Garments List
@@ -248,17 +267,17 @@ export default function CuttingManagerPage() {
                 className="w-full justify-between mt-1 bg-purple-100 text-purple-700 border border-purple-300 hover:bg-purple-50 text-xs"
               >
                 {garmentData || "Select Material"}
-                <ChevronsUpDown className="ml-2 h-4 w-4 text-purple-500" />
+                <ChevronsUpDown className="ml-2 h-6 w-4 text-purple-500" />
               </Button>
             </DropdownMenuTrigger>
 
-            <DropdownMenuContent className="w-120 bg-white border border-purple-200 rounded-md shadow-md">
+            <DropdownMenuContent className="w-200 bg-white border border-purple-200 rounded-md shadow-md">
               {availableGarments.map((mat) => (
                 <DropdownMenuItem
                   key={mat.id}
                   onClick={() => setGarmentData(mat.garmentType)}
                   className={cn(
-                    "flex justify-between text-gray-700 text-xs hover:bg-purple-50 cursor-pointer",
+                    "flex justify-between text-gray-900 text-xs hover:bg-purple-100 cursor-pointer",
                     selectedMaterial === mat.materialCode
                       ? "bg-purple-100 text-purple-700"
                       : ""
@@ -281,67 +300,66 @@ export default function CuttingManagerPage() {
         </div>
 
         <div className="flex flex-row items-end gap-6">
-          {garmentData && (
-            <>
-              {editableGarments
-                .filter((g) => g.garmentType === garmentData)
-                .map((g) => (
-                  <div key={g.id} className="flex flex-row items-end gap-6">
-                    <div className="flex flex-col gap-1">
-                      <Label className="font-medium text-gray-200 text-sm">
-                        Deadline
-                      </Label>
-                      <Input
-                        type="text"
-                        value={g.deadline || "No deadline set"}
-                        readOnly
-                        className="bg-purple-100 border border-purple-300 text-purple-700 w-41 text-xs font-normal cursor-not-allowed"
-                      />
-                    </div>
+          {garmentData &&
+            editableGarments
+              .filter((g) => g.garmentType === garmentData)
+              .map((g) => (
+                <div key={g.id} className="flex flex-row items-end gap-6">
+                  <div className="flex flex-col gap-1">
+                    <Label className="font-medium text-gray-200 text-sm">
+                      Deadline
+                    </Label>
 
-                    <div className="flex flex-col gap-1">
-                      <Label className="font-medium text-gray-200 text-sm">
-                        Material Code *
-                      </Label>
-                      <Input
-                        type="text"
-                        value={g.materialCode || "N/A"}
-                        readOnly
-                        className="bg-purple-100 border border-purple-300 text-purple-700 w-41 text-xs font-normal cursor-not-allowed"
-                      />
-                    </div>
-                    <div className="flex flex-col gap-1">
-                      <Label className="font-medium text-gray-200 text-sm">
-                        Quantity Cut *
-                      </Label>
-                      <Input
-                        type="number"
-                        placeholder="Enter quantity"
-                        value={quantityCutting}
-                        onChange={(e) => setQuantityCutting(e.target.value)}
-                        className="w-41 bg-purple-100 border border-purple-300 text-purple-700 hover:bg-purple-50 text-xs"
-                      />
-                    </div>
-
-                    <div className="flex flex-col gap-1">
-                      <Label className="font-medium text-gray-200 text-sm">
-                        Measurement Unit
-                      </Label>
-                      <select
-                        value={g.measurementUnit}
-                        onChange={(e) => setMeasurementUnit(e.target.value)}
-                        className="w-41 h-9 bg-purple-100 border border-purple-300 text-purple-700 text-xs rounded-md px-2 py-1 focus:outline-none hover:bg-purple-50"
-                      >
-                        <option value="pcs">INC</option>
-                        <option value="meters">MM</option>
-                        <option value="kg">CM</option>
-                        <option value="dozen">YD</option>
-                      </select>
-                    </div>
+                    <Input
+                      type="text"
+                      value={g.deadline || "No deadline set"}
+                      readOnly
+                      className="bg-purple-100 border border-purple-300 text-purple-700 w-65 text-xs font-normal cursor-not-allowed"
+                    />
                   </div>
-                ))}
-            </>
-          )}
+
+                  <div className="flex flex-col gap-1">
+                    <Label className="font-medium text-gray-200 text-sm">
+                      Material Code *
+                    </Label>
+                    <Input
+                      type="text"
+                      value={g.materialCode || "N/A"}
+                      readOnly
+                      className="bg-purple-100 border border-purple-300 text-purple-700 w-65 text-xs font-normal cursor-not-allowed"
+                    />
+                  </div>
+
+                  <div className="flex flex-col gap-1">
+                    <Label className="font-medium text-gray-200 text-sm">
+                      Quantity Cut *
+                    </Label>
+                    <Input
+                      type="number"
+                      placeholder="Enter quantity"
+                      value={quantityCutting}
+                      onChange={(e) => setQuantityCutting(e.target.value)}
+                      className="w-65 bg-purple-100 border border-purple-300 text-purple-700 hover:bg-purple-50 text-xs"
+                    />
+                  </div>
+
+                  <div className="flex flex-col gap-1">
+                    <Label className="font-medium text-gray-200 text-sm">
+                      Measurement Unit
+                    </Label>
+                    <select
+                      value={g.measurementUnit}
+                      onChange={(e) => setMeasurementUnit(e.target.value)}
+                      className="w-65 h-9 bg-purple-100 border border-purple-300 text-purple-700 text-xs rounded-md px-2 py-1 focus:outline-none hover:bg-purple-50"
+                    >
+                      <option value="pcs">INC</option>
+                      <option value="meters">MM</option>
+                      <option value="kg">CM</option>
+                      <option value="dozen">YD</option>
+                    </select>
+                  </div>
+                </div>
+              ))}
         </div>
 
         {garmentData && (
@@ -353,17 +371,40 @@ export default function CuttingManagerPage() {
                   key={g.id}
                   className="flex flex-col sm:flex-row gap-4 items-start"
                 >
-                  <div className="w-full mt-10 sm:w-1/3 flex flex-col items-center">
-                    <img
-                      src={g.img}
-                      alt={g.garmentType}
-                      className="w-40 h-40 object-cover rounded-md border border-purple-200 shadow-sm"
-                    />
-                    <p className="mt-2 text-sm font-medium text-purple-700 text-center">
+                  <div className="w-full sm:w-1/3 mt-3 flex flex-col items-center">
+                    <Dialog>
+                      <DialogTrigger asChild>
+                        <div className="relative w-75 cursor-pointer group">
+                          <img
+                            src={g.img}
+                            alt={g.garmentType}
+                            className="w-full h-75 object-cover border rounded-2xl shadow-xl transition-all duration-300 group-hover:opacity-80 group-hover:scale-[1.02]"
+                          />
+
+                          <div className="absolute inset-0 rounded-2xl bg-linear-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition duration-300"></div>
+
+                          <div className="absolute bottom-3 right-3 bg-white/80 backdrop-blur-md text-gray-800 px-2 py-1 rounded-md text-[10px] font-semibold shadow-md opacity-0 group-hover:opacity-100 transition">
+                            Click to View
+                          </div>
+                        </div>
+                      </DialogTrigger>
+
+                      <DialogContent className="max-w-xl border-none shadow-2xl rounded-2xl p-0">
+                        <img
+                          src={g.img}
+                          alt={g.garmentType}
+                          className="w-full h-auto rounded-2xl"
+                        />
+                      </DialogContent>
+                    </Dialog>
+
+                    <p className="mt-3 text-sm font-semibold text-purple-300 tracking-wide text-center">
                       {g.garmentType}
                     </p>
 
-                    <p className="text-xs text-gray-500">Qty: {g.quantity}</p>
+                    <p className="text-xs text-gray-400 tracking-tight">
+                      Qty: {g.quantity}
+                    </p>
                   </div>
 
                   <div className="flex-1 w-full">
@@ -401,6 +442,7 @@ export default function CuttingManagerPage() {
           <Label className="font-medium text-gray-200 mb-2 block text-sm">
             Available Stitchers
           </Label>
+
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3">
             {stitchers.map((s) => (
               <Dialog
@@ -489,7 +531,7 @@ export default function CuttingManagerPage() {
           <textarea
             value={remarks}
             onChange={(e) => setRemarks(e.target.value)}
-            className="w-full h-15 bg-purple-100 border border-purple-300 rounded mt-1 hover:bg-purple-50 "
+            className="w-full h-15 bg-purple-100 border border-purple-300 rounded mt-1 hover:bg-purple-50"
           />
         </div>
 

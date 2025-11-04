@@ -48,7 +48,7 @@ const garmentsList = [
       collar: "Regular",
       sOpen: "Buttoned",
     },
-    img: "https://example.com/images/formal-shirt.png",
+    img: "https://i.pinimg.com/736x/23/6c/8e/236c8e3131d31c73389b2839816c0d84.jpg",
   },
   {
     id: 2,
@@ -67,12 +67,11 @@ const garmentsList = [
       collar: "Regular",
       sOpen: "Buttoned",
     },
-    img: "https://example.com/images/kurti.png",
+    img: "https://i.pinimg.com/736x/e8/68/79/e868797c2629770854bd6482706defa8.jpg",
   },
 ];
 
 export default function CuttingManagerPage() {
-  
   const [selectedMaterial, setSelectedMaterial] = useState("");
 
   const [quantityCut, setQuantityCut] = useState("");
@@ -499,7 +498,7 @@ export default function CuttingManagerPage() {
             onClick={handleSave}
             className="bg-purple-600 hover:bg-purple-700 text-white px-4 py-1.5 rounded-md text-xs shadow"
           >
-            Save Cutting Order
+            Assign Order
           </Button>
         </div>
       </div>

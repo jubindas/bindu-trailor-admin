@@ -37,22 +37,7 @@ const router = createBrowserRouter([
       },
       {
         path: "order-details",
-        element: (
-          <OrderDetails
-            garmentData={{
-              orderId: "ORD12345",
-              metarial: "Cotton",
-              garmentType: "Kurti",
-              basePrice: 300,
-              fabricSource: "Customer",
-              materialRate: 30,
-              quantity: 1,
-              additionalPrice: 4,
-              remarks: "hhh",
-              total: 334,
-            }}
-          />
-        ),
+        element: <OrderDetails />,
       },
       {
         path: "work-load",

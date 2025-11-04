@@ -6,8 +6,6 @@ import { cuttingColumns } from "@/table-columns/cutting-manager-columns";
 
 import { useState } from "react";
 
-
-
 export default function CuttingManager() {
 
 const [searchTerm, setSearchTerm] = useState("");

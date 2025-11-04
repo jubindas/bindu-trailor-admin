@@ -24,7 +24,7 @@ import {
 
 interface MenuItem {
   title: string;
-  url?: string;
+  url: string;
   icon?: any;
   count?: number;
   children?: MenuItem[];

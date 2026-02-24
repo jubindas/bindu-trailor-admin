@@ -4,23 +4,17 @@ import RootLayout from "@/components/RootLayout";
 
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
-import Orders from "./pages/Orders";
-
-import CuttingManager from "./pages/CuttingManager";
-
 import Dashboard from "./pages/Dashboard";
 
 import LoginPage from "./pages/LoginPage";
 
-import CuttingManagerDialog from "./components/CuttingManagerDialog";
-
-import Employee from "./pages/Employee";
-
 import Stitching from "./pages/Stitching";
+
+import StitchingComplete from "./pages/StitchingComplete";
 
 const router = createBrowserRouter([
   {
-    path: "/login",
+    path: "login",
     element: <LoginPage />,
   },
   {
@@ -32,24 +26,12 @@ const router = createBrowserRouter([
         element: <Dashboard />,
       },
       {
-        path: "work-assignment",
-        element: <CuttingManager />,
-      },
-      {
-        path: "work-load",
-        element: <CuttingManagerDialog />,
-      },
-      {
-        path: "order-status",
-        element: <Orders />,
-      },
-      {
-        path: "employee",
-        element: <Employee />,
-      },
-      {
         path: "stitching",
         element: <Stitching />,
+      },
+      {
+        path: "stitching-complete",
+        element: <StitchingComplete />,
       },
     ],
   },

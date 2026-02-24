@@ -1,8 +1,23 @@
+import { useNavigate } from "react-router-dom";
+import { toast } from "sonner";
 import { SidebarTrigger } from "./ui/sidebar";
-
 import { User, LogOut } from "lucide-react";
 
 export default function Navbar() {
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    // Clear auth data
+    localStorage.removeItem("staff_token");
+    localStorage.removeItem("staff_user");
+
+    // Show success message
+    toast.success("Logged out successfully");
+
+    // Navigate to login
+    navigate("/login");
+  };
+
   return (
     <nav className="sticky top-0 bg-[#8C03E9]/70 backdrop-blur-md px-6 py-3 h-[69px] shadow-md flex items-center justify-between gap-4 z-50">
       <div className="flex items-center gap-3">
@@ -14,7 +29,10 @@ export default function Navbar() {
           <User className="h-5 w-5 text-white" />
         </div>
 
-        <button className="flex items-center gap-2 rounded-lg bg-[#1F2937]/90 px-3 py-2 text-sm font-medium text-white shadow hover:bg-[#1F2998]/90 transition">
+        <button
+          onClick={handleLogout}
+          className="flex items-center gap-2 rounded-lg bg-[#1F2937]/90 px-3 py-2 text-sm font-medium text-white shadow hover:bg-[#1F2998]/90 transition"
+        >
           <LogOut className="h-4 w-4" />
           Logout
         </button>

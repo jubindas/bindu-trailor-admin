@@ -14,7 +14,7 @@ export const stitchingData: Stitching[] = [
     garmentType: "Denim Jeans",
     quantity: 60,
     metarialCode: ["MAT-D45"],
-    status: "Cutting Pending",
+    status: "In Production",
     remarks: "Awaiting fabric arrival",
   },
   {
@@ -22,7 +22,7 @@ export const stitchingData: Stitching[] = [
     garmentType: "Hoodie",
     quantity: 40,
     metarialCode: ["MAT-H08"],
-    status: "Quality Check",
+    status: "Pending",
     remarks: "Check zipper alignment and hood stitching",
   },
   {
@@ -46,7 +46,7 @@ export const stitchingData: Stitching[] = [
     garmentType: "Blazer",
     quantity: 30,
     metarialCode: ["MAT-B90"],
-    status: "Delayed",
+    status: "Pending",
     remarks: "Lining material shortage",
   },
   {
@@ -62,7 +62,7 @@ export const stitchingData: Stitching[] = [
     garmentType: "Cargo Pants",
     quantity: 45,
     metarialCode: ["MAT-C70"],
-    status: "Cutting Pending",
+    status: "Pending",
     remarks: "Need pocket reinforcement samples",
   },
 ];
